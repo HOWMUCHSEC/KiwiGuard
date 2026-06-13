@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: kiwiguard
+      POSTGRES_USER: kiwiguard
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kiwiguard}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kiwiguard -d kiwiguard"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.12
+    environment:
+      CLICKHOUSE_DB: kiwiguard
+      CLICKHOUSE_USER: kiwiguard
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-kiwiguard}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - "../internal/contexts/traffic/adapters/clickhouse/schema.sql:/docker-entrypoint-initdb.d/001_kiwiguard_traffic_events.sql:ro"
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--query", "select 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20

@@ -1,0 +1,802 @@
+openapi: 3.1.0
+info:
+  title: KiwiGuard Control API
+  version: 0.1.0
+paths:
+  /api/healthz:
+    get:
+      operationId: getHealth
+      summary: Read control-plane health
+      responses:
+        "200":
+          description: Control plane is reachable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /api/config/active:
+    get:
+      operationId: getActiveConfig
+      summary: Read active runtime configuration status
+      responses:
+        "200":
+          description: Active configuration status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigStatusResponse"
+  /api/policy-bundles:
+    get:
+      operationId: listPolicyBundles
+      summary: List policy bundles
+      responses:
+        "200":
+          description: Policy bundles
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PolicyBundleListResponse"
+    post:
+      operationId: createPolicyBundle
+      summary: Create or replace a policy bundle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PolicyBundle"
+      responses:
+        "201":
+          description: Created policy bundle
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PolicyBundle"
+        "400":
+          $ref: "#/components/responses/Error"
+  /api/policy-bundles/validate:
+    post:
+      operationId: validatePolicyBundle
+      summary: Validate a policy bundle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PolicyBundle"
+      responses:
+        "200":
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PolicyValidationResponse"
+  /api/policy-bundles/activate:
+    post:
+      operationId: activatePolicyBundles
+      summary: Activate policy bundles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PolicyActivationRequest"
+      responses:
+        "200":
+          description: Activation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PolicyActivationResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+        "404":
+          $ref: "#/components/responses/Error"
+  /api/model-mappings:
+    get:
+      operationId: listModelMappings
+      summary: List route and model mappings
+      responses:
+        "200":
+          description: Model mappings
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - items
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ModelMapping"
+  /api/model-mappings/{id}:
+    put:
+      operationId: putModelMapping
+      summary: Create or update a model mapping
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelMapping"
+      responses:
+        "200":
+          description: Saved model mapping
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelMapping"
+  /api/verdict-providers:
+    get:
+      operationId: listVerdictProviders
+      summary: List vertical security model providers
+      responses:
+        "200":
+          description: Verdict providers
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - items
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/VerdictProvider"
+  /api/verdict-providers/{id}:
+    put:
+      operationId: putVerdictProvider
+      summary: Create or update a verdict provider
+      parameters:
+        - $ref: "#/components/parameters/ID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerdictProvider"
+      responses:
+        "200":
+          description: Saved verdict provider
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VerdictProvider"
+  /api/traffic/events:
+    get:
+      operationId: listTrafficEvents
+      summary: List recent gateway traffic events
+      parameters:
+        - name: route_id
+          in: query
+          schema:
+            type: string
+        - name: provider_id
+          in: query
+          schema:
+            type: string
+        - name: direction
+          in: query
+          schema:
+            type: string
+            enum:
+              - input
+              - output
+        - name: status
+          in: query
+          schema:
+            type: integer
+            minimum: 100
+            maximum: 599
+        - name: risk_level
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+      responses:
+        "200":
+          description: Recent traffic events
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrafficEventsResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+  /api/traffic/spool:
+    get:
+      operationId: getTrafficSpoolStatus
+      summary: Read durable traffic event spool status
+      responses:
+        "200":
+          description: Durable event spool status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SpoolStatusResponse"
+  /api/tools/regex-test:
+    post:
+      operationId: testRegex
+      summary: Test a regular expression against sample text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegexTestRequest"
+      responses:
+        "200":
+          description: Regex matches
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegexTestResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+  /api/tools/policy-dry-run:
+    post:
+      operationId: dryRunPolicy
+      summary: Evaluate sample text against a policy bundle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PolicyDryRunRequest"
+      responses:
+        "200":
+          description: Policy decision
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PolicyDryRunResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+components:
+  parameters:
+    ID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    Error:
+      description: Request failed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - version
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+            - degraded
+            - unhealthy
+        version:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        checks:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/HealthCheck"
+    HealthCheck:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+        reason:
+          type: string
+        depth:
+          type: integer
+        bytes:
+          type: integer
+          format: int64
+        max_bytes:
+          type: integer
+          format: int64
+        oldest_age_seconds:
+          type: number
+          format: double
+        overflow_count:
+          type: integer
+          format: int64
+    ConfigStatusResponse:
+      type: object
+      required:
+        - active_policy_bundle_keys
+        - policy_snapshot_hash
+      properties:
+        active_policy_bundle_keys:
+          type: array
+          items:
+            type: string
+        policy_snapshot_hash:
+          type: string
+    PolicyBundle:
+      type: object
+      required:
+        - key
+        - version
+        - source
+        - default_action
+      properties:
+        key:
+          type: string
+        version:
+          type: string
+        source:
+          type: string
+          enum:
+            - built_in
+            - user
+            - imported
+        default_action:
+          $ref: "#/components/schemas/PolicyAction"
+        detectors:
+          type: array
+          items:
+            $ref: "#/components/schemas/Detector"
+        rules:
+          type: array
+          items:
+            $ref: "#/components/schemas/PolicyRule"
+    PolicyBundleListResponse:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/PolicyBundle"
+    PolicyValidationRequest:
+      $ref: "#/components/schemas/PolicyBundle"
+    PolicyValidationResponse:
+      type: object
+      required:
+        - valid
+      properties:
+        valid:
+          type: boolean
+        error:
+          type: string
+        hash:
+          type: string
+    PolicyActivationRequest:
+      type: object
+      required:
+        - keys
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+        reason:
+          type: string
+    PolicyActivationResponse:
+      type: object
+      required:
+        - active_keys
+        - hash
+      properties:
+        active_keys:
+          type: array
+          items:
+            type: string
+        hash:
+          type: string
+        revision_number:
+          type: integer
+          format: int64
+        notification_error:
+          type: string
+    ModelMapping:
+      type: object
+      required:
+        - id
+        - route_key
+        - provider
+        - model
+        - enabled
+      properties:
+        id:
+          type: string
+        route_key:
+          type: string
+        provider:
+          type: string
+        model:
+          type: string
+        enabled:
+          type: boolean
+    VerdictProvider:
+      type: object
+      required:
+        - id
+        - name
+        - endpoint
+        - mode
+        - enabled
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        endpoint:
+          type: string
+        mode:
+          type: string
+          enum:
+            - inline
+        enabled:
+          type: boolean
+    TrafficEventsResponse:
+      type: object
+      required:
+        - items
+        - summary
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/TrafficEvent"
+        summary:
+          $ref: "#/components/schemas/TrafficEventsSummary"
+    TrafficEventsSummary:
+      type: object
+      required:
+        - total
+        - blocked
+        - upstream_errors
+        - fallbacks
+      properties:
+        total:
+          type: integer
+        blocked:
+          type: integer
+        upstream_errors:
+          type: integer
+        fallbacks:
+          type: integer
+    SpoolStatusResponse:
+      type: object
+      required:
+        - enabled
+        - status
+        - depth
+        - bytes
+        - max_bytes
+        - oldest_age_seconds
+        - overflow_count
+      properties:
+        enabled:
+          type: boolean
+        status:
+          type: string
+          description: Current durable spool state such as ok, backlogged, degraded, or disabled.
+        reason:
+          type: string
+        depth:
+          type: integer
+        bytes:
+          type: integer
+          format: int64
+        max_bytes:
+          type: integer
+          format: int64
+        oldest_age_seconds:
+          type: number
+          format: double
+        overflow_count:
+          type: integer
+          format: int64
+    TrafficEvent:
+      type: object
+      required:
+        - event_time
+        - request_id
+        - route_id
+        - provider_id
+        - direction
+        - action
+        - gateway_status
+        - upstream_status
+        - requested_model
+        - mapped_model
+        - latency_ms
+        - verdict_latency_ms
+        - detector_latency_ms
+        - matched_span_count
+        - fallback_triggered
+        - request_hash
+        - response_hash
+        - request_payload
+        - response_payload
+      properties:
+        event_time:
+          type: string
+          format: date-time
+        request_id:
+          type: string
+        correlation_id:
+          type: string
+        route_id:
+          type: string
+        provider_id:
+          type: string
+        direction:
+          type: string
+          enum:
+            - input
+            - output
+            - ""
+        action:
+          type: string
+        gateway_status:
+          type: integer
+        upstream_status:
+          type: integer
+        error_type:
+          type: string
+        block_reason:
+          type: string
+        requested_model:
+          type: string
+        mapped_model:
+          type: string
+        latency_ms:
+          type: integer
+        verdict_latency_ms:
+          type: integer
+        detector_latency_ms:
+          type: integer
+        matched_span_count:
+          type: integer
+        fallback_triggered:
+          type: boolean
+        request_hash:
+          type: string
+        response_hash:
+          type: string
+        request_payload:
+          type: string
+        response_payload:
+          type: string
+        spool_status:
+          type: string
+          description: Durable spool state reported by the event sink. Empty means the event was delivered directly.
+    RegexTestRequest:
+      type: object
+      required:
+        - pattern
+        - text
+      properties:
+        pattern:
+          type: string
+        text:
+          type: string
+    RegexTestResponse:
+      type: object
+      required:
+        - matches
+      properties:
+        matches:
+          type: array
+          items:
+            type: object
+            required:
+              - start
+              - end
+              - text
+            properties:
+              start:
+                type: integer
+              end:
+                type: integer
+              text:
+                type: string
+    PolicyDryRunRequest:
+      type: object
+      required:
+        - direction
+        - text
+        - bundle
+      properties:
+        route_key:
+          type: string
+        provider:
+          type: string
+        model:
+          type: string
+        direction:
+          type: string
+          enum:
+            - input
+            - output
+        text:
+          type: string
+        bundle:
+          $ref: "#/components/schemas/PolicyBundle"
+    PolicyDryRunResponse:
+      type: object
+      required:
+        - decision
+      properties:
+        decision:
+          $ref: "#/components/schemas/PolicyDecision"
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    PolicyDecision:
+      type: object
+      required:
+        - action
+        - default_action
+        - rule_hits
+        - findings
+        - model_signal_applied
+        - snapshot_hash
+        - bundle_keys
+      properties:
+        action:
+          $ref: "#/components/schemas/PolicyAction"
+        default_action:
+          $ref: "#/components/schemas/PolicyAction"
+        rule_hits:
+          type: array
+          items:
+            $ref: "#/components/schemas/PolicyRuleHit"
+        findings:
+          type: array
+          items:
+            $ref: "#/components/schemas/PolicyFinding"
+        model_signal_applied:
+          type: boolean
+        snapshot_hash:
+          type: string
+        bundle_keys:
+          type: array
+          items:
+            type: string
+    PolicyRuleHit:
+      type: object
+      required:
+        - bundle_key
+        - rule_key
+        - severity
+        - action
+        - findings
+      properties:
+        bundle_key:
+          type: string
+        rule_key:
+          type: string
+        severity:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - critical
+        action:
+          $ref: "#/components/schemas/PolicyAction"
+        findings:
+          type: array
+          items:
+            $ref: "#/components/schemas/PolicyFinding"
+    PolicyFinding:
+      type: object
+      required:
+        - detector_key
+        - category
+        - start
+        - end
+        - value_hash
+      properties:
+        detector_key:
+          type: string
+        category:
+          type: string
+        start:
+          type: integer
+        end:
+          type: integer
+        value_hash:
+          type: string
+    Detector:
+      type: object
+      required:
+        - key
+        - kind
+      properties:
+        key:
+          type: string
+        kind:
+          type: string
+          enum:
+            - regex
+            - email
+            - phone
+            - payment_card
+            - secret
+        pattern:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+    PolicyRule:
+      type: object
+      required:
+        - key
+        - enabled
+        - severity
+        - action
+        - detector_keys
+      properties:
+        key:
+          type: string
+        enabled:
+          type: boolean
+        severity:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - critical
+        action:
+          $ref: "#/components/schemas/PolicyAction"
+        detector_keys:
+          type: array
+          items:
+            type: string
+        scope:
+          type: object
+          properties:
+            route_key:
+              type: string
+            provider:
+              type: string
+            model:
+              type: string
+            direction:
+              type: string
+              enum:
+                - input
+                - output
+    PolicyAction:
+      type: string
+      enum:
+        - allow
+        - block
+        - redact
+        - shadow_log

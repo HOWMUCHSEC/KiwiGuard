@@ -1,0 +1,71 @@
+.kg-overview-panel,
+.kg-dashboard-config-panel,
+.kg-dashboard-traffic-panel {
+  display: grid;
+}
+
+.kg-dashboard-section-body {
+  display: grid;
+  gap: 16px;
+}
+
+.overview-grid {
+  display: grid;
+  gap: var(--kg-console-grid-gap-tight, 12px);
+  grid-template-columns: repeat(var(--kg-console-columns, 3), minmax(0, 1fr));
+}
+
+.overview-card {
+  align-items: flex-start;
+  background: var(--cds-layer-02, var(--kg-shell-surface-inset));
+  border: 1px solid var(--cds-border-subtle, var(--kg-shell-border));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+  min-height: 96px;
+  padding: 12px 14px;
+}
+
+.overview-card span {
+  color: var(--cds-text-secondary, var(--kg-shell-text-muted));
+  font-size: 12px;
+}
+
+.overview-card strong {
+  color: var(--cds-text-primary, var(--kg-shell-text));
+  display: block;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.kg-dashboard-traffic-panel__body {
+  align-content: start;
+  display: grid;
+  gap: 12px;
+}
+
+.kg-dashboard-traffic-panel .traffic-summary {
+  margin-bottom: 0;
+}
+
+.kg-dashboard-traffic-panel .cds--btn {
+  justify-self: start;
+}
+
+.kg-dashboard-config-panel .stacked-list {
+  min-width: 0;
+}
+
+@media (max-width: 980px) {
+  .overview-grid {
+    grid-template-columns: repeat(var(--kg-console-columns, 2), minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 672px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}

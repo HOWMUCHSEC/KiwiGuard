@@ -1,0 +1,9 @@
+.superpowers/
+.gocache/
+bin/
+coverage.out
+.pnpm-store/
+web/dist/
+web/node_modules/
+web/coverage/
+.DS_Store

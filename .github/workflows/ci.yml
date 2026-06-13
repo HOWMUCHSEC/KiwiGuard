@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "codex/**"
+      - "codex-*"
+
+permissions:
+  contents: read
+
+jobs:
+  go:
+    name: Go Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download Go modules
+        run: go mod download
+
+      - name: Test Go packages
+        run: make test-go
+
+      - name: Test with race detector and coverage
+        run: make test-go-race
+
+      - name: Print coverage summary
+        run: go tool cover -func=coverage.out
+
+      - name: Upload Go coverage profile
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-coverage
+          path: coverage.out
+          if-no-files-found: error
+
+      - name: Enforce Go coverage threshold
+        run: make coverage-check
+
+      - name: Compile and smoke benchmark hot paths
+        run: make bench-go
+
+      - name: Validate Docker Compose stack
+        run: make docker-config
+
+  go-standards:
+    name: Go Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download Go modules
+        run: go mod download
+
+      - name: Check repository standards
+        run: make standards-check
+
+      - name: Lint GitHub Actions workflows
+        run: make actionlint
+
+      - name: Check Go formatting and imports
+        run: make fmt-go-check
+
+      - name: Run go vet
+        run: make vet-go
+
+      - name: Check go mod tidy
+        run: make tidy-check
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          version: v2.6.2
+          args: ./...
+
+      - name: Run govulncheck
+        uses: golang/govulncheck-action@v1
+        with:
+          go-version-file: go.mod
+          go-package: ./...
+
+  web:
+    name: Web Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install web dependencies
+        run: pnpm -C web install --frozen-lockfile
+
+      - name: Typecheck web console
+        run: make test-web
+
+      - name: Build web console
+        run: make build-web

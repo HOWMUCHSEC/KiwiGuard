@@ -1,0 +1,31 @@
+{
+  "name": "@kiwiguard/console",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "check:architecture": "node scripts/check-console-architecture.mjs",
+    "check:comments": "node scripts/check-source-comments.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@carbon/icons-react": "^11.80.0",
+    "@carbon/react": "^1.107.1",
+    "@carbon/styles": "^1.106.0",
+    "@tanstack/react-query": "^5.90.11",
+    "@tanstack/react-table": "^8.21.3",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4"
+  }
+}

@@ -1,0 +1,16 @@
+{
+	admin off
+}
+
+{$KIWIGUARD_PUBLIC_GATEWAY_HOST} {
+	reverse_proxy kiwiguard-gateway:8080
+}
+
+{$KIWIGUARD_PUBLIC_CONTROL_HOST:localhost} {
+	bind 127.0.0.1
+	reverse_proxy kiwiguard-control:8081
+}
+
+:80 {
+	respond / 404
+}

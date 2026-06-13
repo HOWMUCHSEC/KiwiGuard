@@ -1,0 +1,114 @@
+.compact-list,
+.access-console,
+.access-section,
+.effective-limits {
+  display: grid;
+}
+
+.kg-routing-section-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.compact-list {
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.access-console {
+  gap: 18px;
+}
+
+.effective-limits {
+  border-top: 1px solid var(--cds-border-subtle, var(--kg-shell-border));
+  gap: 10px;
+  margin-top: 2px;
+  padding-top: 14px;
+}
+
+.effective-limits h4 {
+  color: var(--cds-text-secondary, var(--kg-shell-text-muted));
+  font-size: 13px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.list-row,
+.access-row {
+  align-items: center;
+  border-bottom: 1px solid var(--cds-border-subtle, var(--kg-shell-border));
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  padding: 10px 0;
+}
+
+.access-row {
+  gap: 12px;
+}
+
+.list-row span,
+.list-row strong {
+  overflow-wrap: anywhere;
+}
+
+.list-row code,
+.access-row code {
+  background: var(--cds-layer-02, var(--kg-shell-border));
+  border-radius: 6px;
+  color: var(--cds-text-primary, var(--kg-shell-text));
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  padding: 4px 6px;
+}
+
+.access-section,
+.effective-limits {
+  border-top: 1px solid var(--cds-border-subtle, var(--kg-shell-border));
+}
+
+.access-section {
+  padding-top: 16px;
+}
+
+.access-section:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.access-section-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.access-section h3 {
+  font-size: 16px;
+}
+
+.access-editor,
+.limit-editor,
+.one-time-key {
+  background: var(--cds-layer-02, var(--kg-shell-surface-inset));
+  border: 1px solid var(--cds-border-subtle, var(--kg-shell-border));
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+}
+
+.one-time-key code {
+  background: var(--cds-layer-01, var(--kg-shell-surface));
+  border: 1px solid var(--cds-border-strong, var(--kg-shell-border-strong));
+  color: var(--cds-text-primary, var(--kg-shell-text));
+  display: block;
+  padding: 10px;
+}
+
+@media (max-width: 700px) {
+  .list-row,
+  .access-row {
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+  }
+}
