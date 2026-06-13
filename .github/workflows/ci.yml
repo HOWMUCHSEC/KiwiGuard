@@ -58,9 +58,9 @@ jobs:
         run: make tidy-check
 
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v8
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: v2.6.2
+          version: v2.12.2
           args: ./...
 
       - name: Run govulncheck
