@@ -296,7 +296,7 @@ func assignConfigValues(dest []any, values []any) error {
 	}
 	for i := range values {
 		target := reflect.ValueOf(dest[i])
-		if target.Kind() != reflect.Ptr || target.IsNil() {
+		if target.Kind() != reflect.Pointer || target.IsNil() {
 			return fmt.Errorf("scan target %d is not a pointer", i)
 		}
 		value := reflect.ValueOf(values[i])

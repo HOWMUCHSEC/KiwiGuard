@@ -550,13 +550,6 @@ func fakeLoadActiveRuntimeConfigTx(commitErr error) *fakeConfigTx {
 	}
 }
 
-func fakeCurrentRevisionListRepo() *ConfigRepository {
-	return &ConfigRepository{pool: &fakeConfigDB{
-		rowResults: []fakeConfigRow{rowWithConfigValues("revision-1")},
-		rows:       []*fakeConfigRows{newConfigRows(nil)},
-	}}
-}
-
 func containsModelMapping(mappings []routingstore.ModelMapping, name string) bool {
 	for _, mapping := range mappings {
 		if mapping.Name == name {
