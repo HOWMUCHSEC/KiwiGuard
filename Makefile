@@ -49,7 +49,7 @@ test-scripts:
 	./scripts/dev-env-scripts_test.sh
 
 bench-go:
-	go test ./internal/domain/detection ./internal/domain/policy ./internal/contexts/gateway/adapters/http/openai -run '^$$' -bench . -benchtime=1x -benchmem
+	go test ./internal/contexts/detection/domain ./internal/contexts/policy/domain ./internal/contexts/gateway/adapters/http/openai -run '^$$' -bench . -benchtime=1x -benchmem
 
 fmt-go:
 	go run golang.org/x/tools/cmd/goimports@$(GOIMPORTS_VERSION) -w $$(git ls-files --cached --others --exclude-standard '*.go' | while IFS= read -r file; do test -f "$$file" && printf '%s\n' "$$file"; done)

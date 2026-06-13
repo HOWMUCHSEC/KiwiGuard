@@ -6,9 +6,9 @@ import (
 	"time"
 
 	gatewayhttp "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/adapters/http/openai"
+	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	appruntime "github.com/howmuchsec/kiwiguard/internal/contexts/runtime/application"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/adapters/events"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 func TestCompileGatewayRuntimeBuildsRoutesProvidersAndSnapshot(t *testing.T) {

@@ -3,8 +3,8 @@ package openai
 import (
 	"strings"
 
-	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
+	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
 )
 
 // GenerateClientKey returns a one-time raw key and the key material to store.

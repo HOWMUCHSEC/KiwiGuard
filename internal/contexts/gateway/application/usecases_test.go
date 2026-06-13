@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/routing/domain"
+	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 func TestAdmissionUseCaseAllowsProtectedRoute(t *testing.T) {

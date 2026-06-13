@@ -14,10 +14,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/adapters/events"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/adapters/events"
+	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 func TestGatewayInvokesVerdictAndForwardsAllowedChatCompletion(t *testing.T) {

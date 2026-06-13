@@ -1,9 +1,9 @@
 package application
 
 import (
-	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
 )
 
 // ClassifyTrafficEvent derives business observability fields for a gateway event.

@@ -8,8 +8,8 @@ import (
 	"time"
 
 	gatewayhttp "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/adapters/http/openai"
-	appruntime "github.com/howmuchsec/kiwiguard/internal/contexts/runtime/application"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	appruntime "github.com/howmuchsec/kiwiguard/internal/contexts/runtime/application"
 )
 
 type (

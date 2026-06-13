@@ -6,9 +6,9 @@ import (
 	"sort"
 	"time"
 
+	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	verdicthttp "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/adapters/httpprovider"
 	domainverdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // BuildConfig converts application runtime configuration into HTTP gateway transport configuration.

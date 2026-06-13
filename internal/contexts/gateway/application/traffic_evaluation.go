@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/routing/domain"
+	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 // ShadowEvaluationObserver receives completed async shadow verdict evaluations.
