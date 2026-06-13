@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	verdicthttp "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/adapters/httpprovider"
 	domainverdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )

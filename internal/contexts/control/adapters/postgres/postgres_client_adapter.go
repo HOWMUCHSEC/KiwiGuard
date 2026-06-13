@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	clientstore "github.com/howmuchsec/kiwiguard/internal/contexts/clients/adapters/postgres"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
+	clients "github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
 	appcontrol "github.com/howmuchsec/kiwiguard/internal/contexts/control/application"
 )
 

@@ -7,7 +7,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // ErrActiveRuntimeConfigNotFound reports that no active runtime config exists.

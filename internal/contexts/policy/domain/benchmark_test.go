@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 )
 
 func BenchmarkEvaluateTenThousandRules(b *testing.B) {

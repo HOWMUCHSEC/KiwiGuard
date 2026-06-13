@@ -3,7 +3,7 @@ package openai
 import (
 	"strings"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
+	clients "github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
 	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
 )
 

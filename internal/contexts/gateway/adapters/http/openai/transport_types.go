@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/routing/domain"
+	clients "github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	routing "github.com/howmuchsec/kiwiguard/internal/contexts/routing/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/adapters/events"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 const (

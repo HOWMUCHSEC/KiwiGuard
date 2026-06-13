@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	policystore "github.com/howmuchsec/kiwiguard/internal/contexts/policy/adapters/postgres"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // toPolicyBundles rebuilds enabled policy bundles from persisted PostgreSQL records.

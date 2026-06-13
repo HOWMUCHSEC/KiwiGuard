@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 type providerServer struct {

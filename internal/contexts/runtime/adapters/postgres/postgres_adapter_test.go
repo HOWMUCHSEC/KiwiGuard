@@ -12,9 +12,9 @@ import (
 	configrevision "github.com/howmuchsec/kiwiguard/internal/adapters/postgres/revisionstore"
 	clientstore "github.com/howmuchsec/kiwiguard/internal/contexts/clients/adapters/postgres"
 	limitstore "github.com/howmuchsec/kiwiguard/internal/contexts/clients/adapters/postgres/limit"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	policystore "github.com/howmuchsec/kiwiguard/internal/contexts/policy/adapters/postgres"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	routingstore "github.com/howmuchsec/kiwiguard/internal/contexts/routing/adapters/postgres"
 	observabilitystore "github.com/howmuchsec/kiwiguard/internal/contexts/traffic/adapters/postgres/observability"
 )

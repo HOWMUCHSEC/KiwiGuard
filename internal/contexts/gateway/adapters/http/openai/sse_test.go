@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/adapters/events"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 func TestSSEParserReadsOpenAIDataFrames(t *testing.T) {

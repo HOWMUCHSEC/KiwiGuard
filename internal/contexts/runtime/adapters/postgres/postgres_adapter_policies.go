@@ -3,9 +3,9 @@ package runtime
 import (
 	"fmt"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	policystore "github.com/howmuchsec/kiwiguard/internal/contexts/policy/adapters/postgres"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // convertPostgresPolicyBundles converts persisted bundles into runtime policy bundles.

@@ -7,7 +7,7 @@ import (
 	"github.com/howmuchsec/kiwiguard/internal/adapters/postgres/configstore"
 	appcontrol "github.com/howmuchsec/kiwiguard/internal/contexts/control/application"
 	policystore "github.com/howmuchsec/kiwiguard/internal/contexts/policy/adapters/postgres"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // ListPolicyBundles projects the currently visible persisted bundles into control-plane contracts.

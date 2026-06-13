@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 // redactOpenAIRequest applies request-body redaction using normalized text spans.

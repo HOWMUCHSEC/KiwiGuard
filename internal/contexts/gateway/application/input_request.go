@@ -1,6 +1,6 @@
 package application
 
-import "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+import policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 
 // InputRequestUseCase plans the transport-neutral lifecycle for gateway input.
 type InputRequestUseCase struct {

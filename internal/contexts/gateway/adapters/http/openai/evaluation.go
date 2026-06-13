@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 // decisionResult keeps transport-facing policy and verdict outcomes for one evaluation.

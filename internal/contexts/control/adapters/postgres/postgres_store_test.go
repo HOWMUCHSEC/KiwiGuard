@@ -11,9 +11,9 @@ import (
 	clientstore "github.com/howmuchsec/kiwiguard/internal/contexts/clients/adapters/postgres"
 	limitstore "github.com/howmuchsec/kiwiguard/internal/contexts/clients/adapters/postgres/limit"
 	appcontrol "github.com/howmuchsec/kiwiguard/internal/contexts/control/application"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	policystore "github.com/howmuchsec/kiwiguard/internal/contexts/policy/adapters/postgres"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 	routingstore "github.com/howmuchsec/kiwiguard/internal/contexts/routing/adapters/postgres"
 )
 

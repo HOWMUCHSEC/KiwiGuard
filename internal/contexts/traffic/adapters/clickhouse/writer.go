@@ -8,7 +8,7 @@ import (
 	"time"
 
 	ch "github.com/ClickHouse/clickhouse-go/v2"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
+	traffic "github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
 )
 
 const insertTrafficEventsQuery = `

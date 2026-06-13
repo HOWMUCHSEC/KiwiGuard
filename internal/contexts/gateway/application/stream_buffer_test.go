@@ -3,7 +3,7 @@ package application
 import (
 	"testing"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 )
 
 func TestStreamBufferObservesDeltas(t *testing.T) {

@@ -3,9 +3,9 @@ package application
 import (
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/routing/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	routing "github.com/howmuchsec/kiwiguard/internal/contexts/routing/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 // Authenticator verifies gateway client credentials.

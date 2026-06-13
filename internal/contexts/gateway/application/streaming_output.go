@@ -1,6 +1,6 @@
 package application
 
-import "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+import policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 
 // StreamingOutputUseCase plans the transport-neutral lifecycle for streaming output.
 type StreamingOutputUseCase struct {

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // ServiceOptions supplies the repositories and side effects used by control-plane use cases.

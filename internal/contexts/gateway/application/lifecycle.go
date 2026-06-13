@@ -1,8 +1,8 @@
 package application
 
 import (
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // LifecycleUseCase owns transport-neutral gateway lifecycle decisions.

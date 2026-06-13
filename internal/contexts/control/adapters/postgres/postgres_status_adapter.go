@@ -6,7 +6,7 @@ import (
 
 	"github.com/howmuchsec/kiwiguard/internal/adapters/postgres/configstore"
 	appcontrol "github.com/howmuchsec/kiwiguard/internal/contexts/control/application"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // ConfigStatus compiles the active bundle set into the control-plane status response.

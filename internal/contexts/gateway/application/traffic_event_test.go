@@ -3,9 +3,9 @@ package application
 import (
 	"testing"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 func TestLifecycleUseCaseClassifyTrafficEventTermination(t *testing.T) {

@@ -4,7 +4,7 @@ package events
 import (
 	"context"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
+	traffic "github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
 )
 
 type (

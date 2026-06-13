@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	clients "github.com/howmuchsec/kiwiguard/internal/contexts/clients/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // MemoryRepository keeps control-plane configuration in memory for tests and ephemeral deployments.

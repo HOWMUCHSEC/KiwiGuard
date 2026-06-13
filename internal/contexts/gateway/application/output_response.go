@@ -1,6 +1,6 @@
 package application
 
-import "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+import policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 
 // OutputResponseUseCase plans the transport-neutral lifecycle for non-streaming upstream output.
 type OutputResponseUseCase struct {

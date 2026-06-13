@@ -1,8 +1,8 @@
 package httpapi
 
 import (
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 // toDecisionDTO converts a domain policy decision into the control API response shape.

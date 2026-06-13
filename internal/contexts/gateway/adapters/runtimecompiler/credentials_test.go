@@ -9,8 +9,8 @@ import (
 	"testing"
 
 	gatewayhttp "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/adapters/http/openai"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 func TestCompileGatewayRuntimeResolvesProviderCredentialRef(t *testing.T) {

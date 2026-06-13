@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 )
 
 // Snapshot holds compiled policy state for repeated evaluation.

@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 	appgateway "github.com/howmuchsec/kiwiguard/internal/contexts/gateway/application"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
-	"github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	traffic "github.com/howmuchsec/kiwiguard/internal/contexts/traffic/domain"
+	verdict "github.com/howmuchsec/kiwiguard/internal/contexts/verdict/domain"
 )
 
 // emit records one normalized traffic event for the completed exchange.

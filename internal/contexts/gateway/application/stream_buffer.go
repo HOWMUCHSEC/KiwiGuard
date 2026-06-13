@@ -3,7 +3,7 @@ package application
 import (
 	"bytes"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+	detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 )
 
 // StreamBuffer keeps transport-neutral streaming output state for policy checks.

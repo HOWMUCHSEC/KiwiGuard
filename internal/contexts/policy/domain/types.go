@@ -1,7 +1,7 @@
 // Package policy compiles immutable policy snapshots and evaluates traffic.
 package policy
 
-import "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
+import detection "github.com/howmuchsec/kiwiguard/internal/contexts/detection/domain"
 
 // Action identifies the enforcement action selected by a policy decision.
 type Action string

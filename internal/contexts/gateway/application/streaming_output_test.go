@@ -3,7 +3,7 @@ package application
 import (
 	"testing"
 
-	"github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
+	policy "github.com/howmuchsec/kiwiguard/internal/contexts/policy/domain"
 )
 
 func TestStreamingOutputUseCasePlansDeltaPolicyEvaluation(t *testing.T) {
