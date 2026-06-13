@@ -4,6 +4,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - go
     groups:
       go-dependencies:
         patterns:
@@ -13,6 +17,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+      - github-actions
     groups:
       github-actions:
         patterns:
@@ -22,6 +30,10 @@ updates:
     directory: /web
     schedule:
       interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - web
     groups:
       web-dependencies:
         patterns:

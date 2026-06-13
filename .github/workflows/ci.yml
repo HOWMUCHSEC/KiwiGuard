@@ -8,69 +8,42 @@ on:
       - "codex/**"
       - "codex-*"
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
-  go:
-    name: Go Verification
+  repo-standards:
+    name: Repository Standards
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-          cache: true
-
-      - name: Download Go modules
-        run: go mod download
-
-      - name: Test Go packages
-        run: make test-go
-
-      - name: Test with race detector and coverage
-        run: make test-go-race
-
-      - name: Print coverage summary
-        run: go tool cover -func=coverage.out
-
-      - name: Upload Go coverage profile
-        uses: actions/upload-artifact@v4
-        with:
-          name: go-coverage
-          path: coverage.out
-          if-no-files-found: error
-
-      - name: Enforce Go coverage threshold
-        run: make coverage-check
-
-      - name: Compile and smoke benchmark hot paths
-        run: make bench-go
-
-      - name: Validate Docker Compose stack
-        run: make docker-config
+      - name: Check repository standards
+        run: make standards-check
 
   go-standards:
     name: Go Standards
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
           cache: true
 
       - name: Download Go modules
         run: go mod download
-
-      - name: Check repository standards
-        run: make standards-check
 
       - name: Lint GitHub Actions workflows
         run: make actionlint
@@ -96,20 +69,79 @@ jobs:
           go-version-file: go.mod
           go-package: ./...
 
+  go-quick:
+    name: Go PR Verification
+    if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download Go modules
+        run: go mod download
+
+      - name: Test Go packages
+        run: make test-go
+
+  go-main:
+    name: Go Main Verification
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download Go modules
+        run: go mod download
+
+      - name: Test with race detector and coverage
+        run: make test-go-race
+
+      - name: Print coverage summary
+        run: go tool cover -func=coverage.out
+
+      - name: Upload Go coverage profile
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-coverage
+          path: coverage.out
+          if-no-files-found: error
+
+      - name: Enforce Go coverage threshold
+        run: make coverage-check
+
+      - name: Compile and smoke benchmark hot paths
+        run: make bench-go
+
+      - name: Validate Docker Compose stack
+        run: make docker-config
+
   web:
     name: Web Verification
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 10
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: pnpm
