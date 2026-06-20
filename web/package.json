@@ -11,21 +11,21 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@carbon/icons-react": "^11.80.0",
-    "@carbon/react": "^1.107.1",
-    "@carbon/styles": "^1.106.0",
-    "@tanstack/react-query": "^5.90.11",
+    "@carbon/icons-react": "^11.82.0",
+    "@carbon/react": "^1.110.0",
+    "@carbon/styles": "^1.109.0",
+    "@tanstack/react-query": "^5.101.0",
     "@tanstack/react-table": "^8.21.3",
-    "lucide-react": "^0.468.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "lucide-react": "^1.21.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.2.4"
+    "@vitejs/plugin-react": "^6.0.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
   }
 }
